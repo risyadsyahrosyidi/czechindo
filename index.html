@@ -41,8 +41,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.5)), 
-                        url('NZ6_7525.JPG') no-repeat center center;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.5)), url('NZ6_7525.JPG');
+            background-repeat: no-repeat;
+            background-position: center center;
             background-size: cover;
             filter: grayscale(100%) brightness(1.1) contrast(1.05);
             z-index: -1;
@@ -501,7 +502,7 @@
 
         // 2. Fungsi Mengarahkan Langsung ke Email (risyadrosyidi.cz@gmail.com) via mailto popup
         function sendEmailClient(event) {
-            event.preventDefault(); // Mencegah reload halaman standar
+            event.preventDefault();
 
             const name = document.getElementById('clientName').value;
             const email = document.getElementById('clientEmail').value;
@@ -515,7 +516,6 @@
                 "Message / Proposal:\n" + message
             );
 
-            // Membuka aplikasi email default / Gmail web client klien secara otomatis
             window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
         }
 
