@@ -8,7 +8,7 @@
     <!-- Google Fonts (Font Caesar Dressing untuk Header Animasi) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Montserrat:wght@400;500;600;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome untuk Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -107,7 +107,7 @@
             display: flex;
             justify-content: center;
             gap: 16px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .circle-icon-item {
@@ -125,6 +125,7 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             text-decoration: none;
+            cursor: pointer; /* Menjadikan kursor seperti tombol */
         }
 
         .circle-icon-item:hover {
@@ -133,6 +134,111 @@
             border-color: #ffffff;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.25);
+        }
+
+        /* MODAL / POP-UP STYLING */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ffffff;
+            max-width: 450px;
+            width: 100%;
+            padding: 30px 25px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .modal-close:hover {
+            color: #aaaaaa;
+        }
+
+        .modal-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .modal-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .modal-text {
+            font-size: 0.85rem;
+            color: #dddddd;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+            font-weight: 400;
+        }
+
+        /* SHORT DESCRIPTION INTRODUCTION SECTION */
+        .intro-box {
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 18px 20px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .intro-text {
+            font-size: 0.82rem;
+            color: #dddddd;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+            font-weight: 400;
+        }
+
+        .intro-text b, .intro-text strong {
+            font-weight: 700;
+            font-style: italic;
         }
 
         .divider {
@@ -475,6 +581,16 @@
         <div id="youtube-audio-player"></div>
     </div>
 
+    <!-- POP-UP MODAL VISI -->
+    <div class="modal-overlay" id="visionModal" onclick="closeModalOnOutside(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-icon" id="modalIconDisplay"></div>
+            <h2 class="modal-title" id="modalTitleDisplay"></h2>
+            <p class="modal-text" id="modalTextDisplay"></p>
+        </div>
+    </div>
+
     <div class="container">
         
         <!-- BRAND BOX -->
@@ -484,18 +600,24 @@
 
         <p class="tagline">LIVING LIFE BETWEEN CULTURES</p>
 
-        <!-- KATEGORI ICON BULAT -->
+        <!-- KATEGORI ICON BULAT (DITAMBAHKAN FUNGSI KLIK) -->
         <div class="circle-icons">
-            <div class="circle-icon-item" title="Vlog">
+            <div class="circle-icon-item" title="Vlog" onclick="openModal('vlog')">
                 <i class="fa-solid fa-video"></i>
             </div>
-            <div class="circle-icon-item" title="Travel">
+            <div class="circle-icon-item" title="Travel" onclick="openModal('travel')">
                 <i class="fa-solid fa-plane"></i>
             </div>
-            <div class="circle-icon-item" title="Culture">
-                <!-- Diperbarui ke ikon Topeng Seni/Budaya -->
+            <div class="circle-icon-item" title="Culture" onclick="openModal('culture')">
                 <i class="fa-solid fa-masks-theater"></i>
             </div>
+        </div>
+
+        <!-- SHORT DESCRIPTION INTRODUCTION -->
+        <div class="intro-box">
+            <p class="intro-text">
+                Welcome to our digital space, <b><i>CZECHINDO</i></b> is a creative digital media platform focused on Vlog, Travel, and Culture, exploring life between the Czech Republic and Indonesia through the personal experiences and perspectives of <b><i>Risyad</i></b> and <b><i>Emma</i></b>. From everyday life and travel to cultural encounters and discoveries, we create visual stories that reflect the experience of living between two cultures.
+            </p>
         </div>
 
         <!-- Video Embed -->
@@ -595,6 +717,52 @@
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
+        // Data Visi untuk Pop-Up Icon
+        const visionData = {
+            vlog: {
+                icon: "fa-solid fa-video",
+                title: "Vlog",
+                text: "Through Vlog, we capture everyday moments, personal experiences, and stories from life between two cultures, offering an authentic perspective through our own lens."
+            },
+            travel: {
+                icon: "fa-solid fa-plane",
+                title: "Travel",
+                text: "Through Travel, we explore new destinations, discover local cultures, and experience the people, places, and stories that make every journey worth remembering."
+            },
+            culture: {
+                icon: "fa-solid fa-masks-theater",
+                title: "Culture",
+                text: "Through Culture, we explore traditions, lifestyles, values, and everyday experiences that shape how people live, connect, and see the world."
+            }
+        };
+
+        function openModal(category) {
+            const modal = document.getElementById('visionModal');
+            const iconDisplay = document.getElementById('modalIconDisplay');
+            const titleDisplay = document.getElementById('modalTitleDisplay');
+            const textDisplay = document.getElementById('modalTextDisplay');
+
+            const data = visionData[category];
+            if (data) {
+                iconDisplay.className = data.icon + " modal-icon";
+                titleDisplay.textContent = data.title;
+                textDisplay.textContent = data.text;
+                modal.classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('visionModal');
+            modal.classList.remove('active');
+        }
+
+        function closeModalOnOutside(event) {
+            const modal = document.getElementById('visionModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
         // 1. YouTube Background Audio Setup
         let player;
         let isPlaying = false;
