@@ -33,7 +33,7 @@
             background-color: #000000;
         }
 
-        /* Background Foto Hitam Putih dengan Lapisan Gelap yang Diterangkan */
+        /* Background Foto Hitam Putih */
         body::before {
             content: '';
             position: fixed;
@@ -358,29 +358,59 @@
             text-shadow: 0 1px 4px rgba(0,0,0,0.8);
         }
 
-        /* IFRAME LAGU TERSEMBUNYI (BACKGROUND MUSIC) */
+        /* TOMBOL KONTROL MUSIK FLOATING */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            background: #ffffff;
+            color: #000000;
+        }
+
         .bg-music-player {
-            position: absolute;
+            position: fixed;
+            bottom: -100px;
+            right: -100px;
             width: 1px;
             height: 1px;
             opacity: 0;
             pointer-events: none;
-            overflow: hidden;
-            top: -9999px;
-            left: -9999px;
         }
     </style>
 </head>
 <body>
 
-    <!-- PEMUTAR LAGU TERSEMBUNYI (Lagu "Wilujeng": aAN_XvqwhQk) -->
+    <!-- TOMBOL CONTROL MUSIK -->
+    <button class="music-btn" id="musicToggle" onclick="toggleAudio()" title="Mute/Unmute Music">
+        <i class="fa-solid fa-volume-high" id="musicIcon"></i>
+    </button>
+
+    <!-- PEMUTAR LAGU YOUTUBE (Lagu Wilujeng: aAN_XvqwhQk) -->
     <div class="bg-music-player">
         <div id="youtube-audio-player"></div>
     </div>
 
     <div class="container">
         
-        <!-- BRAND BOX DENGAN UKURAN KOTAK TERKUNCI -->
+        <!-- BRAND BOX -->
         <div class="brand-box">
             <h1 class="brand-title" id="brandTitle">CZECHINDO</h1>
         </div>
@@ -445,7 +475,7 @@
             <span>BUSINESS COLLABORATION</span>
         </div>
 
-        <!-- FORMULIR KOLABORASI DENGAN TRIGGER EMAIL CLIENT (GMAIL) -->
+        <!-- FORMULIR KOLABORASI -->
         <form class="contact-form" id="collabForm" onsubmit="sendEmailClient(event)">
             <input type="text" class="input-field" id="clientName" name="Name_or_Company" placeholder="YOUR NAME / COMPANY" required>
             <input type="email" class="input-field" id="clientEmail" name="Email" placeholder="YOUR EMAIL ADDRESS" required>
@@ -459,17 +489,18 @@
 
     </div>
 
-    <!-- YOUTUBE IFRAME API FOR AUTOMATIC AUDIO BACKGROUND -->
+    <!-- YOUTUBE IFRAME API -->
     <script src="https://www.youtube.com/iframe_api"></script>
 
-    <!-- SCRIPT ANIMASI, MEDIUM RSS, AUTOPLAY MUSIK, & MAILTO POPUP -->
     <script>
-        // 1. YouTube Background Audio Setup (Lagu: Wilujeng - aAN_XvqwhQk)
+        // 1. YouTube Background Audio Setup
         let player;
+        let isPlaying = false;
+
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-audio-player', {
-                height: '0',
-                width: '0',
+                height: '1',
+                width: '1',
                 videoId: 'aAN_XvqwhQk',
                 playerVars: {
                     'autoplay': 1,
@@ -485,22 +516,49 @@
 
         function onPlayerReady(event) {
             event.target.playVideo();
+            isPlaying = true;
             
-            const playAudioOnInteraction = () => {
+            // Pemicu interaksi pengguna agar browser mengizinkan audio berbunyi
+            const startAudioOnUserInteraction = () => {
                 if (player && typeof player.playVideo === 'function') {
                     player.playVideo();
+                    isPlaying = true;
+                    updateMusicIcon();
                 }
-                document.removeEventListener('click', playAudioOnInteraction);
-                document.removeEventListener('touchstart', playAudioOnInteraction);
-                document.removeEventListener('scroll', playAudioOnInteraction);
+                document.removeEventListener('click', startAudioOnUserInteraction);
+                document.removeEventListener('touchstart', startAudioOnUserInteraction);
+                document.removeEventListener('scroll', startAudioOnUserInteraction);
             };
 
-            document.addEventListener('click', playAudioOnInteraction);
-            document.addEventListener('touchstart', playAudioOnInteraction);
-            document.addEventListener('scroll', playAudioOnInteraction);
+            document.addEventListener('click', startAudioOnUserInteraction);
+            document.addEventListener('touchstart', startAudioOnUserInteraction);
+            document.addEventListener('scroll', startAudioOnUserInteraction);
         }
 
-        // 2. Fungsi Mengarahkan Langsung ke Email (risyadrosyidi.cz@gmail.com) via mailto popup
+        // Toggle Mute / Unmute Musik
+        function toggleAudio() {
+            if (!player) return;
+            
+            if (isPlaying) {
+                player.pauseVideo();
+                isPlaying = false;
+            } else {
+                player.playVideo();
+                isPlaying = true;
+            }
+            updateMusicIcon();
+        }
+
+        function updateMusicIcon() {
+            const icon = document.getElementById('musicIcon');
+            if (isPlaying) {
+                icon.className = 'fa-solid fa-volume-high';
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark';
+            }
+        }
+
+        // 2. Email Collaboration Trigger
         function sendEmailClient(event) {
             event.preventDefault();
 
@@ -533,7 +591,7 @@
             }, 400);
         }, 2500);
 
-        // 4. Fetch Otomatis Artikel dari Medium @risyadrosyidi via RSS to JSON
+        // 4. Fetch Otomatis Artikel dari Medium
         async function fetchMediumArticles() {
             const container = document.getElementById('mediumArticles');
             const mediumUsername = 'risyadrosyidi';
