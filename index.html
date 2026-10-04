@@ -358,31 +358,33 @@
             text-shadow: 0 1px 4px rgba(0,0,0,0.8);
         }
 
-        /* TOMBOL KONTROL MUSIK FLOATING */
+        /* TOMBOL KONTROL MUSIK FLOATING (DIKECILKAN ELEGAN) */
         .music-btn {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
+            bottom: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid #ffffff;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1.5px solid rgba(255, 255, 255, 0.8);
             color: #ffffff;
-            font-size: 1.2rem;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 999;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
             transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
         }
 
         .music-btn:hover {
             transform: scale(1.1);
             background: #ffffff;
             color: #000000;
+            border-color: #ffffff;
         }
 
         .bg-music-player {
@@ -398,12 +400,12 @@
 </head>
 <body>
 
-    <!-- TOMBOL CONTROL MUSIK -->
+    <!-- TOMBOL CONTROL MUSIK KECIL -->
     <button class="music-btn" id="musicToggle" onclick="toggleAudio()" title="Mute/Unmute Music">
         <i class="fa-solid fa-volume-high" id="musicIcon"></i>
     </button>
 
-    <!-- PEMUTAR LAGU YOUTUBE (Lagu Wilujeng: aAN_XvqwhQk) -->
+    <!-- PEMUTAR LAGU YOUTUBE -->
     <div class="bg-music-player">
         <div id="youtube-audio-player"></div>
     </div>
