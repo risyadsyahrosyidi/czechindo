@@ -284,6 +284,69 @@
             border: 0;
         }
 
+        /* INSTAGRAM REELS PREVIEW */
+        .reels-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            margin-bottom: 25px;
+            padding: 10px 0 18px 0;
+            overflow: visible;
+        }
+
+        .reel-card {
+            position: relative;
+            width: 122px;
+            aspect-ratio: 9 / 16;
+            flex: 0 0 122px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: #000000;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.55);
+            transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease, box-shadow 0.35s ease;
+            transform-origin: center center;
+            z-index: 1;
+        }
+
+        .reel-card iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+            background: #000000;
+        }
+
+        .reels-container:hover .reel-card:not(:hover) {
+            opacity: 0.45;
+            filter: brightness(0.65);
+            transform: scale(0.94);
+        }
+
+        .reel-card:hover {
+            transform: scale(1.16);
+            z-index: 10;
+            border-color: #ffffff;
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.75);
+        }
+
+        @media (max-width: 600px) {
+            .reels-container {
+                gap: 8px;
+                overflow: hidden;
+            }
+
+            .reel-card {
+                width: 24%;
+                flex-basis: 24%;
+            }
+
+            .reel-card:hover {
+                transform: scale(1.08);
+            }
+        }
+
         /* SECTION ARTIKEL / BLOG */
         .articles-container {
             display: flex;
@@ -665,6 +728,28 @@ footer {
             </iframe>
         </div>
 
+        <!-- INSTAGRAM REELS PREVIEW -->
+        <div class="reels-container">
+            <div class="reel-card">
+                <iframe src="https://www.instagram.com/czechindo/reel/DULlwDQkTtv/embed/" title="Instagram Reel 1" loading="lazy" allowfullscreen></iframe>
+            </div>
+            <div class="reel-card">
+                <iframe src="https://www.instagram.com/czechindo/reel/DUFi3AAkY3s/embed/" title="Instagram Reel 2" loading="lazy" allowfullscreen></iframe>
+            </div>
+            <div class="reel-card">
+                <iframe src="https://www.instagram.com/czechindo/reel/DXbm9AfjOuL/embed/" title="Instagram Reel 3" loading="lazy" allowfullscreen></iframe>
+            </div>
+            <div class="reel-card">
+                <iframe src="https://www.instagram.com/czechindo/reel/DaNRtQwsrzg/embed/" title="Instagram Reel 4" loading="lazy" allowfullscreen></iframe>
+            </div>
+            <div class="reel-card">
+                <iframe src="https://www.instagram.com/czechindo/reel/Db8AdD1B9hV/embed/" title="Instagram Reel 5" loading="lazy" allowfullscreen></iframe>
+            </div>
+            <div class="reel-card">
+                <iframe src="https://www.instagram.com/czechindo/reel/DdOQ2sgIjFt/embed/" title="Instagram Reel 6" loading="lazy" allowfullscreen></iframe>
+            </div>
+        </div>
+
         <!-- SECTION ARTIKEL OTOMATIS DARI MEDIUM -->
         <div class="divider">
             <span>LATEST ARTICLES</span>
@@ -893,7 +978,7 @@ footer {
             const email = document.getElementById('clientEmail').value;
             const message = document.getElementById('clientMessage').value;
 
-            const recipient = "risyadrosyidi.cz@gmail.com";
+            const recipient = "czechindonetwork@gmail.com";
             const subject = encodeURIComponent("Business Collaboration from " + name);
             const body = encodeURIComponent(
                 "Name / Company: " + name + "\n" +
