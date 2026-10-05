@@ -576,19 +576,270 @@
         }
 
         /* ==========================================================================
-           7. MUSIC PLAYER CONTROL & FOOTER
+           7. FLOATING CHAT ASSISTANT WIDGET (WARNA: #0D1A63)
+           ========================================================================== */
+        .chat-widget-btn {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0D1A63; /* WARNA BARU */
+            border: 2px solid #0D1A63;
+            color: #ffffff; /* IKON WARNA PUTIH */
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9998;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .chat-widget-btn:hover {
+            transform: scale(1.1);
+            background: #142588;
+            border-color: #142588;
+        }
+
+        .chat-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 12px;
+            height: 12px;
+            background-color: #22c55e;
+            border: 2px solid #000000;
+            border-radius: 50%;
+        }
+
+        .chat-window {
+            position: fixed;
+            bottom: 130px;
+            right: 20px;
+            width: 350px;
+            max-width: calc(100vw - 40px);
+            height: 480px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 9998;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.3s ease;
+        }
+
+        .chat-window.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .chat-header {
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #0D1A63;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .chat-header-info h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .chat-header-info p {
+            font-size: 0.65rem;
+            color: #22c55e;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .chat-header-info p::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+        }
+
+        .chat-close {
+            background: transparent;
+            border: none;
+            color: #aaaaaa;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .chat-close:hover {
+            color: #ffffff;
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .chat-msg {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            word-wrap: break-word;
+        }
+
+        .chat-msg.bot {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .chat-msg.user {
+            background: #ffffff;
+            color: #000000;
+            align-self: flex-end;
+            font-weight: 500;
+            border-bottom-right-radius: 2px;
+        }
+
+        .chat-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        .chat-action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 12px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-wa {
+            background: #25D366;
+            color: #ffffff;
+        }
+
+        .btn-wa:hover {
+            background: #1ebc57;
+            transform: translateY(-1px);
+        }
+
+        .btn-mail {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .btn-mail:hover {
+            background: #dddddd;
+            transform: translateY(-1px);
+        }
+
+        .chat-input-area {
+            padding: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.78rem;
+            outline: none;
+            border-radius: 4px;
+        }
+
+        .chat-input:focus {
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .chat-send-btn {
+            padding: 10px 14px;
+            background: #ffffff;
+            border: none;
+            color: #000000;
+            cursor: pointer;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .chat-send-btn:hover {
+            background: #dddddd;
+        }
+
+        /* ==========================================================================
+           8. MUSIC PLAYER CONTROL (UKURAN DIKECILKAN)
            ========================================================================== */
         .music-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 42px;
-            height: 42px;
+            width: 36px;  /* DIPERKECIL dari 42px */
+            height: 36px; /* DIPERKECIL dari 42px */
             border-radius: 50%;
             background: rgba(0, 0, 0, 0.75);
             border: 1.5px solid rgba(255, 255, 255, 0.8);
             color: #ffffff;
-            font-size: 0.95rem;
+            font-size: 0.8rem; /* UKURAN IKON DIPERKECIL */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -633,10 +884,48 @@
 </head>
 <body>
 
-    <!-- CONTROL MUSIC BUTTON -->
+    <!-- CONTROL MUSIC BUTTON (DIKECILKAN) -->
     <button class="music-btn" id="musicToggle" onclick="toggleAudio()" title="Mute/Unmute Music" aria-label="Toggle Audio">
         <i class="fa-solid fa-volume-xmark" id="musicIcon"></i>
     </button>
+
+    <!-- FLOATING CHAT WIDGET BUTTON (WARNA BARU #0D1A63) -->
+    <button class="chat-widget-btn" id="chatWidgetBtn" onclick="toggleChatWindow()" title="Collaboration Chat Assistant" aria-label="Open Chat">
+        <span class="chat-badge"></span>
+        <i class="fa-solid fa-comments" id="chatWidgetIcon"></i>
+    </button>
+
+    <!-- FLOATING CHAT WINDOW -->
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <div class="chat-title-group">
+                <div class="chat-avatar">CZ</div>
+                <div class="chat-header-info">
+                    <h4>CZECHINDO BOT</h4>
+                    <p>Online • Business Support</p>
+                </div>
+            </div>
+            <button class="chat-close" onclick="toggleChatWindow()" aria-label="Close Chat">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        
+        <div class="chat-body" id="chatBody">
+            <div class="chat-msg bot">
+                Ahoj! 👋 Terima kasih telah menghubungi Czechindo.
+            </div>
+            <div class="chat-msg bot">
+                Ingin berkolaborasi? Ketik ide/pesan Anda di bawah, lalu pilih untuk mengirimnya via WhatsApp atau Email!
+            </div>
+        </div>
+
+        <form class="chat-input-area" onsubmit="handleChatSubmit(event)">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Ketik pesan kolaborasi..." required autocomplete="off">
+            <button type="submit" class="chat-send-btn" aria-label="Send">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
 
     <!-- YOUTUBE MUSIC PLAYER (HIDDEN) -->
     <div class="bg-music-player">
@@ -817,6 +1106,58 @@
 
     <script>
         /* ==========================================================================
+           0. KONFIGURASI KONTAK
+           ========================================================================== */
+        const CONTACT_CONFIG = {
+            whatsappNumber: "628123456789",
+            emailAddress: "risyadrosyidi@gmail.com",
+            emailSubject: "Collaboration Proposal - Czechindo Chat"
+        };
+
+        /* ==========================================================================
+           SOUND EFFECT GENERATOR (WEB AUDIO API)
+           ========================================================================== */
+        function playChatNotificationSound(type = 'bot') {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const ctx = new AudioContext();
+
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                const now = ctx.currentTime;
+
+                if (type === 'sent') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(400, now);
+                    osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
+
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(587.33, now); // D5
+                    osc.frequency.setValueAtTime(880, now + 0.08); // A5
+
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                }
+            } catch (e) {
+                console.warn('AudioContext tidak didukung atau diblokir browser', e);
+            }
+        }
+
+        /* ==========================================================================
            1. ANIMATION FOR HEADER TEXT (SVG AUTO-FIT)
            ========================================================================== */
         const words = ["Czechindo", "Risyad", "Emma", "Let’s Collaborate"];
@@ -901,7 +1242,67 @@
         }
 
         /* ==========================================================================
-           3. MEDIUM RSS FEED INTEGRATION
+           3. FLOATING CHAT WIDGET LOGIC
+           ========================================================================== */
+        function toggleChatWindow() {
+            const chatWin = document.getElementById('chatWindow');
+            const icon = document.getElementById('chatWidgetIcon');
+            
+            chatWin.classList.toggle('active');
+
+            if (chatWin.classList.contains('active')) {
+                icon.className = "fa-solid fa-xmark";
+                document.getElementById('chatInput').focus();
+            } else {
+                icon.className = "fa-solid fa-comments";
+            }
+        }
+
+        function handleChatSubmit(event) {
+            event.preventDefault();
+            const input = document.getElementById('chatInput');
+            const chatBody = document.getElementById('chatBody');
+            const text = input.value.trim();
+
+            if (!text) return;
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-msg user';
+            userMsg.textContent = text;
+            chatBody.appendChild(userMsg);
+
+            playChatNotificationSound('sent');
+
+            input.value = '';
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            const encodedText = encodeURIComponent(`Halo Risyad & Emma,\n\nPesan Kolaborasi:\n${text}`);
+            const waUrl = `https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=${encodedText}`;
+            const mailUrl = `mailto:${CONTACT_CONFIG.emailAddress}?subject=${encodeURIComponent(CONTACT_CONFIG.emailSubject)}&body=${encodedText}`;
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'chat-msg bot';
+                botMsg.innerHTML = `
+                    Pesan Anda sudah siap! Pilih saluran pengiriman yang Anda inginkan:
+                    <div class="chat-actions">
+                        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="chat-action-btn btn-wa">
+                            <i class="fa-brands fa-whatsapp"></i> Kirim via WhatsApp
+                        </a>
+                        <a href="${mailUrl}" class="chat-action-btn btn-mail">
+                            <i class="fa-solid fa-envelope"></i> Kirim via Email
+                        </a>
+                    </div>
+                `;
+                chatBody.appendChild(botMsg);
+                chatBody.scrollTop = chatBody.scrollHeight;
+
+                playChatNotificationSound('bot');
+            }, 500);
+        }
+
+        /* ==========================================================================
+           4. MEDIUM RSS FEED INTEGRATION
            ========================================================================== */
         async function fetchMediumArticles() {
             const mediumContainer = document.getElementById('mediumArticles');
@@ -962,7 +1363,7 @@
         }
 
         /* ==========================================================================
-           4. COLLABORATION FORM (MAILTO SAFEGUARD)
+           5. COLLABORATION FORM (MAILTO SAFEGUARD)
            ========================================================================== */
         function sendEmailClient(event) {
             event.preventDefault();
@@ -987,7 +1388,7 @@
         }
 
         /* ==========================================================================
-           5. AUDIO PLAYER (YOUTUBE EMBED)
+           6. AUDIO PLAYER (YOUTUBE EMBED)
            ========================================================================== */
         let player = null;
         let isPlaying = false;
