@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pozdrav z Czechindo</title>
     
-    <!-- Google Fonts (Font Caesar Dressing untuk Header Animasi) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
@@ -73,7 +73,7 @@
         }
 
         .brand-title {
-            font-family: 'Caesar Dressing', cursive; /* Khusus header animasi teks */
+            font-family: 'Caesar Dressing', cursive;
             font-size: 3.2rem;
             font-weight: 700;
             letter-spacing: 6px;
@@ -125,7 +125,7 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             text-decoration: none;
-            cursor: pointer; /* Menjadikan kursor seperti tombol */
+            cursor: pointer;
         }
 
         .circle-icon-item:hover {
@@ -284,7 +284,7 @@
             border: 0;
         }
 
-        /* INSTAGRAM REELS PREVIEW */
+        /* INSTAGRAM REELS PREVIEW STYLING */
         .reels-container {
             display: flex;
             justify-content: center;
@@ -316,6 +316,7 @@
             border: 0;
             display: block;
             background: #000000;
+            pointer-events: auto;
         }
 
         .reels-container:hover .reel-card:not(:hover) {
@@ -334,16 +335,19 @@
         @media (max-width: 600px) {
             .reels-container {
                 gap: 8px;
-                overflow: hidden;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 10px;
             }
 
             .reel-card {
-                width: 24%;
-                flex-basis: 24%;
+                width: 110px;
+                flex-basis: 110px;
+                flex-shrink: 0;
             }
 
             .reel-card:hover {
-                transform: scale(1.08);
+                transform: scale(1.05);
             }
         }
 
@@ -531,33 +535,31 @@
             color: #000000;
         }
 
-        /* SECTION OUR PARTNERS (UKURAN MEDIUM DI BAWAH BUSINESS COLLABORATION) */
+        /* SECTION OUR PARTNERS */
         .partners-slider-wrapper {
             overflow: hidden;
             width: 100%;
             margin-bottom: 25px;
             position: relative;
-            /* Efek pudar transparan di sisi kiri & kanan */
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
 
         .partners-slider-track {
             display: flex;
-            gap: 30px; /* Jarak antar logo diperlebar karena tanpa kotak */
+            gap: 30px;
             width: max-content;
             align-items: center;
             animation: scrollPartners 18s linear infinite;
         }
 
-        /* Berhenti bergerak saat di-hover kursor */
         .partners-slider-wrapper:hover .partners-slider-track {
             animation-play-state: paused;
         }
 
         .partner-card {
-            background: transparent; /* Menghilangkan background kotak */
-            border: none;             /* Menghilangkan garis tepi kotak */
+            background: transparent;
+            border: none;
             padding: 10px 0;
             width: 100px;
             flex-shrink: 0;
@@ -572,20 +574,20 @@
         }
 
         .partner-card:hover {
-            transform: scale(1.1); /* Efek sedikit membesar saat kursor di atas logo */
+            transform: scale(1.1);
         }
 
         .partner-logo {
             max-width: 100%;
             max-height: 32px;
             object-fit: contain;
-            filter: brightness(0) invert(1); /* Membuat logo berwarna putih penuh */
-            opacity: 0.65; /* Transparansi halus */
+            filter: brightness(0) invert(1);
+            opacity: 0.65;
             transition: opacity 0.3s ease, filter 0.3s ease;
         }
 
         .partner-card:hover .partner-logo {
-            opacity: 1; /* Terang penuh saat di-hover */
+            opacity: 1;
         }
 
         .partner-name {
@@ -601,7 +603,6 @@
             color: #ffffff;
         }
 
-        /* Keyframes untuk Animasi Bergerak Mulus Ke Samping */
         @keyframes scrollPartners {
             0% {
                 transform: translateX(0);
@@ -651,7 +652,7 @@
             pointer-events: none;
         }
 
-footer {
+        footer {
             margin-top: 35px;
             font-size: 0.65rem;
             color: rgba(255, 255, 255, 0.6);
@@ -696,7 +697,7 @@ footer {
 
         <p class="tagline">LIVING LIFE BETWEEN CULTURES</p>
 
-        <!-- KATEGORI ICON BULAT (DITAMBAHKAN FUNGSI KLIK) -->
+        <!-- KATEGORI ICON BULAT -->
         <div class="circle-icons">
             <div class="circle-icon-item" title="Vlog" onclick="openModal('vlog')">
                 <i class="fa-solid fa-video"></i>
@@ -728,25 +729,25 @@ footer {
             </iframe>
         </div>
 
-        <!-- INSTAGRAM REELS PREVIEW -->
+        <!-- INSTAGRAM REELS PREVIEW (DIPERBAIKI) -->
         <div class="reels-container">
             <div class="reel-card">
-                <iframe src="https://www.instagram.com/czechindo/reel/DULlwDQkTtv/embed/" title="Instagram Reel 1" loading="lazy" allowfullscreen></iframe>
+                <iframe src="https://www.instagram.com/p/DULlwDQkTtv/embed/captioned/" title="Instagram Reel 1" loading="lazy" allow="encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="reel-card">
-                <iframe src="https://www.instagram.com/czechindo/reel/DUFi3AAkY3s/embed/" title="Instagram Reel 2" loading="lazy" allowfullscreen></iframe>
+                <iframe src="https://www.instagram.com/p/DUFi3AAkY3s/embed/captioned/" title="Instagram Reel 2" loading="lazy" allow="encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="reel-card">
-                <iframe src="https://www.instagram.com/czechindo/reel/DXbm9AfjOuL/embed/" title="Instagram Reel 3" loading="lazy" allowfullscreen></iframe>
+                <iframe src="https://www.instagram.com/p/DXbm9AfjOuL/embed/captioned/" title="Instagram Reel 3" loading="lazy" allow="encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="reel-card">
-                <iframe src="https://www.instagram.com/czechindo/reel/DaNRtQwsrzg/embed/" title="Instagram Reel 4" loading="lazy" allowfullscreen></iframe>
+                <iframe src="https://www.instagram.com/p/DaNRtQwsrzg/embed/captioned/" title="Instagram Reel 4" loading="lazy" allow="encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="reel-card">
-                <iframe src="https://www.instagram.com/czechindo/reel/Db8AdD1B9hV/embed/" title="Instagram Reel 5" loading="lazy" allowfullscreen></iframe>
+                <iframe src="https://www.instagram.com/p/Db8AdD1B9hV/embed/captioned/" title="Instagram Reel 5" loading="lazy" allow="encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="reel-card">
-                <iframe src="https://www.instagram.com/czechindo/reel/DdOQ2sgIjFt/embed/" title="Instagram Reel 6" loading="lazy" allowfullscreen></iframe>
+                <iframe src="https://www.instagram.com/p/DdOQ2sgIjFt/embed/captioned/" title="Instagram Reel 6" loading="lazy" allow="encrypted-media" allowfullscreen></iframe>
             </div>
         </div>
 
@@ -793,14 +794,14 @@ footer {
             <button type="submit" class="btn-submit">SEND MESSAGE</button>
         </form>
 
-        <!-- SECTION OUR PARTNERS (SIMPAN DI BAWAH BUSINESS COLLABORATION) -->
+        <!-- SECTION OUR PARTNERS -->
         <div class="divider">
             <span>OUR PARTNERS</span>
         </div>
 
         <div class="partners-slider-wrapper">
             <div class="partners-slider-track">
-                <!-- SET 1: Brand Original -->
+                <!-- SET 1 -->
                 <a href="#" class="partner-card" target="_blank" rel="noopener noreferrer">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="partner-logo">
                     <span class="partner-name">Google</span>
@@ -826,7 +827,7 @@ footer {
                     <span class="partner-name">Spotify</span>
                 </a>
 
-                <!-- SET 2: Duplicate untuk Efek Infinite Loop yang Seamless -->
+                <!-- SET 2 -->
                 <a href="#" class="partner-card" target="_blank" rel="noopener noreferrer">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="partner-logo">
                     <span class="partner-name">Google</span>
@@ -850,7 +851,8 @@ footer {
                 <a href="#" class="partner-card" target="_blank" rel="noopener noreferrer">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify" class="partner-logo">
                     <span class="partner-name">Spotify</span>
-            </a>
+                </a>
+            </div>
         </div>
 
         <footer>
@@ -915,14 +917,14 @@ footer {
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-audio-player', {
-                height: '1',
-                width: '1',
-                videoId: 'aAN_XvqwhQk',
+                height: '0',
+                width: '0',
+                videoId: 'jfKfPfyJRdk', // ID Video YouTube untuk background music
                 playerVars: {
-                    'autoplay': 1,
+                    'autoplay': 0,
+                    'controls': 0,
                     'loop': 1,
-                    'playlist': 'aAN_XvqwhQk',
-                    'controls': 0
+                    'playlist': 'jfKfPfyJRdk'
                 },
                 events: {
                     'onReady': onPlayerReady
@@ -931,140 +933,103 @@ footer {
         }
 
         function onPlayerReady(event) {
-            const startAudioOnUserInteraction = () => {
-                if (player && typeof player.playVideo === 'function' && !isPlaying) {
-                    player.playVideo();
-                    isPlaying = true;
-                    updateMusicIcon();
-                }
-                document.removeEventListener('click', startAudioOnUserInteraction);
-                document.removeEventListener('touchstart', startAudioOnUserInteraction);
-                document.removeEventListener('scroll', startAudioOnUserInteraction);
-            };
-
-            document.addEventListener('click', startAudioOnUserInteraction);
-            document.addEventListener('touchstart', startAudioOnUserInteraction);
-            document.addEventListener('scroll', startAudioOnUserInteraction);
+            // Player siap
         }
 
-        // Toggle Mute / Unmute Musik
         function toggleAudio() {
+            const icon = document.getElementById('musicIcon');
             if (!player) return;
-            
+
             if (isPlaying) {
                 player.pauseVideo();
+                icon.className = "fa-solid fa-volume-xmark";
                 isPlaying = false;
             } else {
                 player.playVideo();
+                icon.className = "fa-solid fa-volume-high";
                 isPlaying = true;
             }
-            updateMusicIcon();
         }
 
-        function updateMusicIcon() {
-            const icon = document.getElementById('musicIcon');
-            if (isPlaying) {
-                icon.className = 'fa-solid fa-volume-high';
-            } else {
-                icon.className = 'fa-solid fa-volume-xmark';
-            }
-        }
-
-        // 2. Email Collaboration Trigger
-        function sendEmailClient(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('clientName').value;
-            const email = document.getElementById('clientEmail').value;
-            const message = document.getElementById('clientMessage').value;
-
-            const recipient = "czechindonetwork@gmail.com";
-            const subject = encodeURIComponent("Business Collaboration from " + name);
-            const body = encodeURIComponent(
-                "Name / Company: " + name + "\n" +
-                "Email: " + email + "\n\n" +
-                "Message / Proposal:\n" + message
-            );
-
-            window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-        }
-
-        // 3. Animasi Transisi Teks Header
-        const words = ["CZECHINDO", "RISYAD", "EMMA"];
-        let currentIndex = 0;
-        const brandTitle = document.getElementById("brandTitle");
+        // 2. Animasi Teks Header Brand (Looping Alternating CZECHINDO <-> RISYAD & EMMA)
+        const titles = ["CZECHINDO", "RISYAD & EMMA"];
+        let titleIndex = 0;
+        const brandTitleEl = document.getElementById('brandTitle');
 
         setInterval(() => {
-            brandTitle.classList.add("fade-out");
+            brandTitleEl.classList.add('fade-out');
             setTimeout(() => {
-                currentIndex = (currentIndex + 1) % words.length;
-                brandTitle.textContent = words[currentIndex];
-                brandTitle.classList.remove("fade-out");
+                titleIndex = (titleIndex + 1) % titles.length;
+                brandTitleEl.textContent = titles[titleIndex];
+                brandTitleEl.classList.remove('fade-out');
             }, 400);
-        }, 2500);
+        }, 3500);
 
-        // 4. Fetch Otomatis Artikel dari Medium
+        // 3. Fetch Artikel Medium secara Otomatis menggunakan rss2json
         async function fetchMediumArticles() {
             const container = document.getElementById('mediumArticles');
-            const mediumUsername = 'risyadrosyidi';
-            const rssUrl = `https://medium.com/feed/@${mediumUsername}`;
+            const rssUrl = 'https://medium.com/feed/@risyadrosyidi';
             const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
             try {
                 const response = await fetch(apiUrl);
                 const data = await response.json();
 
-                if (data.status === 'ok' && data.items.length > 0) {
-                    container.innerHTML = '';
+                if (data.status === 'ok' && data.items && data.items.length > 0) {
+                    container.innerHTML = ''; // Hapus pesan loading
+                    
+                    // Ambil maksimal 3 artikel terbaru
+                    const articles = data.items.slice(0, 3);
 
-                    const posts = data.items.slice(0, 3);
+                    articles.forEach(article => {
+                        // Bersihkan teks HTML dari deskripsi untuk membuat cuplikan teks bersih
+                        const tmp = document.createElement('DIV');
+                        tmp.innerHTML = article.description || article.content || '';
+                        let cleanText = tmp.textContent || tmp.innerText || '';
+                        cleanText = cleanText.trim().substring(0, 110) + '...';
 
-                    posts.forEach(post => {
-                        const category = post.categories && post.categories.length > 0 
-                            ? post.categories[0].toUpperCase() 
-                            : 'MEDIUM ARTICLE';
-
-                        const tempDiv = document.createElement('div');
-                        tempDiv.innerHTML = post.description;
-                        
-                        let textContent = tempDiv.textContent || tempDiv.innerText || '';
-                        if (textContent.length > 120) {
-                            textContent = textContent.substring(0, 120) + '...';
-                        }
+                        // Ambil kategori/tag pertama jika ada
+                        const tag = article.categories && article.categories.length > 0 ? article.categories[0] : 'ESSAY';
 
                         const card = document.createElement('a');
-                        card.className = 'article-card';
-                        card.href = post.link;
+                        card.href = article.link;
                         card.target = '_blank';
                         card.rel = 'noopener noreferrer';
+                        card.className = 'article-card';
 
                         card.innerHTML = `
-                            <span class="article-tag"><i class="fa-brands fa-medium"></i> ${category}</span>
-                            <h2 class="article-title">${post.title}</h2>
-                            <p class="article-desc">${textContent}</p>
-                            <div class="article-readmore">READ MORE <i class="fa-solid fa-arrow-right"></i></div>
+                            <span class="article-tag">${tag}</span>
+                            <h3 class="article-title">${article.title}</h3>
+                            <p class="article-desc">${cleanText}</p>
+                            <span class="article-readmore">READ ARTICLE <i class="fa-solid fa-arrow-right"></i></span>
                         `;
 
                         container.appendChild(card);
                     });
                 } else {
-                    container.innerHTML = '<div class="loading-text">BELUM ADA ARTIKEL TERBIT DI MEDIUM</div>';
+                    container.innerHTML = '<div class="loading-text">Tidak ada artikel ditemukan.</div>';
                 }
             } catch (error) {
-                console.error('Error loading Medium RSS:', error);
-                container.innerHTML = `
-                    <a href="https://risyadrosyidi.medium.com/" target="_blank" rel="noopener noreferrer" class="article-card">
-                        <span class="article-tag"><i class="fa-brands fa-medium"></i> MEDIUM BLOG</span>
-                        <h2 class="article-title">Kunjungi Profil Medium Risyad Rosyidi</h2>
-                        <p class="article-desc">Klik di sini untuk membaca semua artikel dan cerita perjalanan terbaru langsung di Medium.</p>
-                        <div class="article-readmore">BUKA MEDIUM <i class="fa-solid fa-arrow-right"></i></div>
-                    </a>
-                `;
+                console.error("Gagal mengambil artikel Medium:", error);
+                container.innerHTML = '<div class="loading-text">Gagal memuat artikel Medium.</div>';
             }
         }
 
-        document.addEventListener("DOMContentLoaded", fetchMediumArticles);
-    </script>
+        // Jalankan fetch artikel saat dokumen selesai dimuat
+        document.addEventListener('DOMContentLoaded', fetchMediumArticles);
 
+        // 4. Form Submission Handler (mailto Client)
+        function sendEmailClient(event) {
+            event.preventDefault();
+            const name = document.getElementById('clientName').value;
+            const email = document.getElementById('clientEmail').value;
+            const message = document.getElementById('clientMessage').value;
+
+            const subject = encodeURIComponent(`Business Collaboration Inquiry from ${name}`);
+            const body = encodeURIComponent(`Name/Company: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+
+            window.location.href = `mailto:czechindo.media@gmail.com?subject=${subject}&body=${body}`;
+        }
+    </script>
 </body>
 </html>
